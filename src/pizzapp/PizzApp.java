@@ -1,17 +1,40 @@
 package pizzapp;
 
 public class PizzApp extends javax.swing.JFrame {
-
+    
+    int pizzaAlapAr = -1;
+    int db = 1;
+    int extrak;
+    double vegsoAr;
+    double meret;
+    
     public PizzApp() {
         initComponents();
+                
+        pizzaAlapAr = 1750;//songoku ára
+        
+        meret = 1; //32 cm
+        
+        int extra1 = 0;
+        int extra2 = 0;
+        int extra3 = 0;
+        extrak = extra1 + extra2 + extra3;
+        
+        db = 1;
+        
+        vegsoAr = pizzaAlapAr * meret + extrak;
+        vegsoAr *= db; //vegsoAr = vegsoAr * db;
+        
+        lblAr.setText(vegsoAr + "");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         lblValaszthato = new javax.swing.JLabel();
-        cmdValaszthatoPizzak = new javax.swing.JComboBox<>();
+        cmbValaszthatoPizzak = new javax.swing.JComboBox<>();
         pnlMeret = new javax.swing.JPanel();
         rdbMeret25 = new javax.swing.JRadioButton();
         rdbMeret32 = new javax.swing.JRadioButton();
@@ -38,15 +61,32 @@ public class PizzApp extends javax.swing.JFrame {
         lblValaszthato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblValaszthato.setText("Választható pizza:");
 
-        cmdValaszthatoPizzak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Margherita", "Hawaii", "Songoku", "Diavola" }));
-        cmdValaszthatoPizzak.setSelectedIndex(2);
+        cmbValaszthatoPizzak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Margherita", "Hawaii", "Songoku", "Diavola" }));
+        cmbValaszthatoPizzak.setSelectedIndex(2);
+        cmbValaszthatoPizzak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbValaszthatoPizzakActionPerformed(evt);
+            }
+        });
 
         pnlMeret.setBorder(javax.swing.BorderFactory.createTitledBorder("Méret"));
 
+        buttonGroup1.add(rdbMeret25);
         rdbMeret25.setText("25 cm");
+        rdbMeret25.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdbMeret25ItemStateChanged(evt);
+            }
+        });
 
+        buttonGroup1.add(rdbMeret32);
         rdbMeret32.setSelected(true);
         rdbMeret32.setText("32 cm");
+        rdbMeret32.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdbMeret32ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMeretLayout = new javax.swing.GroupLayout(pnlMeret);
         pnlMeret.setLayout(pnlMeretLayout);
@@ -159,7 +199,7 @@ public class PizzApp extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblValaszthato, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmdValaszthatoPizzak, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbValaszthatoPizzak, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlMeret, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRendel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlFizetendo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, Short.MAX_VALUE))
@@ -175,7 +215,7 @@ public class PizzApp extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnRendel, cmdValaszthatoPizzak, pnlFizetendo, pnlMeret});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnRendel, cmbValaszthatoPizzak, pnlFizetendo, pnlMeret});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +233,7 @@ public class PizzApp extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblValaszthato)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmdValaszthatoPizzak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbValaszthatoPizzak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pnlMeret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,6 +250,64 @@ public class PizzApp extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbValaszthatoPizzakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbValaszthatoPizzakActionPerformed
+        /*választott pizza indexe
+        index lekérdezése:*/
+        int pizzaIndex = cmbValaszthatoPizzak.getSelectedIndex();
+        
+        /*választott pizza alapára
+        ha index az 0 akkor
+        ...        
+        egyébként ha index az 1 akkor
+        ...
+        egyébként ha index az 2 akkor
+           kiválasztott pizza ára legyen 1750
+        */
+        
+        if(pizzaIndex == 0){
+            pizzaAlapAr = 1590;
+        }else if(pizzaIndex == 1){
+            pizzaAlapAr = 1680;
+        }else if(pizzaIndex == 2){
+            //int pizzaAlapAr2 = 1750;
+             pizzaAlapAr = 1750;
+        }else if(pizzaIndex == 3){
+             pizzaAlapAr = 2100;
+        }
+
+        meret = 1; //32 cm
+        
+        int extra1 = 0;
+        int extra2 = 0;
+        int extra3 = 0;
+        extrak = extra1 + extra2 + extra3;
+        
+        db = 1;
+        
+        vegsoAr = pizzaAlapAr * meret + extrak;
+        vegsoAr *= db; //vegsoAr = vegsoAr * db;
+        
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_cmbValaszthatoPizzakActionPerformed
+
+    private void rdbMeret25ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret25ItemStateChanged
+        meret = .75; //25 cm
+        
+        vegsoAr = pizzaAlapAr * meret + extrak;
+        vegsoAr *= db; //vegsoAr = vegsoAr * db;
+        
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_rdbMeret25ItemStateChanged
+
+    private void rdbMeret32ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret32ItemStateChanged
+        meret = 1; //32 cm
+        
+        vegsoAr = pizzaAlapAr * meret + extrak;
+        vegsoAr *= db; //vegsoAr = vegsoAr * db;
+        
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_rdbMeret32ItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -245,10 +343,11 @@ public class PizzApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRendel;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chbAnanasz;
     private javax.swing.JCheckBox chbHagyma;
     private javax.swing.JCheckBox chbSajt;
-    private javax.swing.JComboBox<String> cmdValaszthatoPizzak;
+    private javax.swing.JComboBox<String> cmbValaszthatoPizzak;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAr;
     private javax.swing.JLabel lblFizFt;
