@@ -312,7 +312,7 @@ public class PizzApp extends javax.swing.JFrame {
 
     private void chbSajtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbSajtActionPerformed
         if (chbSajt.isSelected()) {
-            extra1 = 500;
+            extra1 = 200;
         }
         else {
             extra1 = 0;
@@ -322,7 +322,7 @@ public class PizzApp extends javax.swing.JFrame {
     
     private void chbHagymaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbHagymaActionPerformed
         if (chbHagyma.isSelected()) {
-            extra2 = 500;
+            extra2 = 200;
         }
         else {
             extra2 = 0;
@@ -332,7 +332,7 @@ public class PizzApp extends javax.swing.JFrame {
 
     private void chbAnanaszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbAnanaszActionPerformed
         if (chbAnanasz.isSelected()) {
-            extra3 = 500;
+            extra3 = 200;
         }
         else {
             extra3 = 0;
