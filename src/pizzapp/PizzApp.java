@@ -305,9 +305,27 @@ public class PizzApp extends javax.swing.JFrame {
     }//GEN-LAST:event_numDbStateChanged
 
     private void btnRendelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRendelActionPerformed
-
+        String valasztottPizza = (String)cmbValaszthatoPizzak.getSelectedItem();
+        String meretSzoveg = "32 cm";
+        String extrak = "";
+        if (meret == .75) {
+            meretSzoveg = "25 cm";
+        }
+        if (extra1 != 0) {
+            extrak += "- sajt\n";
+        } 
+        if (extra2 != 0) {
+            extrak += "- hagyma\n";
+        }
+        if (extra3 != 0) {
+            extrak += "- ananász\n";
+        }
         
+        String osszesitoSzoveg = "A választott pizza : " + valasztottPizza + "("+ db+" db)\n"
+                + "mérete: " + meretSzoveg + "\n"
+                + "feltétek:\n" + extrak;
         
+        txaOsszesito.setText(osszesitoSzoveg);
     }//GEN-LAST:event_btnRendelActionPerformed
 
     private void chbSajtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbSajtActionPerformed
