@@ -4,6 +4,9 @@ public class PizzApp extends javax.swing.JFrame {
     
     int pizzaAlapAr = -1;
     int db = 1;
+    int extra1 = 0;
+    int extra2 = 0;
+    int extra3 = 0;
     int extrak;
     double vegsoAr;
     double meret;
@@ -15,9 +18,7 @@ public class PizzApp extends javax.swing.JFrame {
         
         meret = 1; //32 cm
         
-        int extra1 = 0;
-        int extra2 = 0;
-        int extra3 = 0;
+        
         extrak = extra1 + extra2 + extra3;
         
         db = 1;
@@ -158,10 +159,25 @@ public class PizzApp extends javax.swing.JFrame {
         pnlExtrak.setBorder(javax.swing.BorderFactory.createTitledBorder("Extrák"));
 
         chbSajt.setText("sajt");
+        chbSajt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbSajtActionPerformed(evt);
+            }
+        });
 
         chbHagyma.setText("hagyma");
+        chbHagyma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbHagymaActionPerformed(evt);
+            }
+        });
 
         chbAnanasz.setText("ananász");
+        chbAnanasz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbAnanaszActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlExtrakLayout = new javax.swing.GroupLayout(pnlExtrak);
         pnlExtrak.setLayout(pnlExtrakLayout);
@@ -191,6 +207,11 @@ public class PizzApp extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaOsszesito);
 
         btnRendel.setText("Megrendelem");
+        btnRendel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRendelActionPerformed(evt);
+            }
+        });
 
         lblOsszesito.setText("Összestő:");
 
@@ -283,6 +304,42 @@ public class PizzApp extends javax.swing.JFrame {
         arKalkulacio();
     }//GEN-LAST:event_numDbStateChanged
 
+    private void btnRendelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRendelActionPerformed
+
+        
+        
+    }//GEN-LAST:event_btnRendelActionPerformed
+
+    private void chbSajtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbSajtActionPerformed
+        if (chbSajt.isSelected()) {
+            extra1 = 500;
+        }
+        else {
+            extra1 = 0;
+        }
+        arKalkulacio();
+    }//GEN-LAST:event_chbSajtActionPerformed
+    
+    private void chbHagymaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbHagymaActionPerformed
+        if (chbHagyma.isSelected()) {
+            extra2 = 500;
+        }
+        else {
+            extra2 = 0;
+        }
+        arKalkulacio();
+    }//GEN-LAST:event_chbHagymaActionPerformed
+
+    private void chbAnanaszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbAnanaszActionPerformed
+        if (chbAnanasz.isSelected()) {
+            extra3 = 500;
+        }
+        else {
+            extra3 = 0;
+        }
+        arKalkulacio();
+    }//GEN-LAST:event_chbAnanaszActionPerformed
+
     private void arKalkulacio(){
         /*választott pizza indexe
         index lekérdezése:*/
@@ -307,16 +364,10 @@ public class PizzApp extends javax.swing.JFrame {
         }else if(pizzaIndex == 3){
              pizzaAlapAr = 2100;
         }
-
-        meret = 1; //32 cm
         
-        int extra1 = 0;
-        int extra2 = 0;
-        int extra3 = 0;
+       
         extrak = extra1 + extra2 + extra3;
-        
-        //db = 1;
-        
+                
         vegsoAr = pizzaAlapAr * meret + extrak;
         vegsoAr *= db; //vegsoAr = vegsoAr * db;
         
