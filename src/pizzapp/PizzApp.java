@@ -119,6 +119,11 @@ public class PizzApp extends javax.swing.JFrame {
         lblAr.setText("1750");
 
         numDb.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        numDb.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                numDbStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFizetendoLayout = new javax.swing.GroupLayout(pnlFizetendo);
         pnlFizetendo.setLayout(pnlFizetendoLayout);
@@ -252,6 +257,33 @@ public class PizzApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbValaszthatoPizzakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbValaszthatoPizzakActionPerformed
+        arKalkulacio();
+    }//GEN-LAST:event_cmbValaszthatoPizzakActionPerformed
+
+    private void rdbMeret25ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret25ItemStateChanged
+        meret = .75; //25 cm
+        
+        vegsoAr = pizzaAlapAr * meret + extrak;
+        vegsoAr *= db; //vegsoAr = vegsoAr * db;
+        
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_rdbMeret25ItemStateChanged
+
+    private void rdbMeret32ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret32ItemStateChanged
+        meret = 1; //32 cm
+        
+        vegsoAr = pizzaAlapAr * meret + extrak;
+        vegsoAr *= db; //vegsoAr = vegsoAr * db;
+        
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_rdbMeret32ItemStateChanged
+
+    private void numDbStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_numDbStateChanged
+        db = (int)numDb.getValue();
+        arKalkulacio();
+    }//GEN-LAST:event_numDbStateChanged
+
+    private void arKalkulacio(){
         /*választott pizza indexe
         index lekérdezése:*/
         int pizzaIndex = cmbValaszthatoPizzak.getSelectedIndex();
@@ -283,32 +315,13 @@ public class PizzApp extends javax.swing.JFrame {
         int extra3 = 0;
         extrak = extra1 + extra2 + extra3;
         
-        db = 1;
+        //db = 1;
         
         vegsoAr = pizzaAlapAr * meret + extrak;
         vegsoAr *= db; //vegsoAr = vegsoAr * db;
         
         lblAr.setText(vegsoAr + "");
-    }//GEN-LAST:event_cmbValaszthatoPizzakActionPerformed
-
-    private void rdbMeret25ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret25ItemStateChanged
-        meret = .75; //25 cm
-        
-        vegsoAr = pizzaAlapAr * meret + extrak;
-        vegsoAr *= db; //vegsoAr = vegsoAr * db;
-        
-        lblAr.setText(vegsoAr + "");
-    }//GEN-LAST:event_rdbMeret25ItemStateChanged
-
-    private void rdbMeret32ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret32ItemStateChanged
-        meret = 1; //32 cm
-        
-        vegsoAr = pizzaAlapAr * meret + extrak;
-        vegsoAr *= db; //vegsoAr = vegsoAr * db;
-        
-        lblAr.setText(vegsoAr + "");
-    }//GEN-LAST:event_rdbMeret32ItemStateChanged
-
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
